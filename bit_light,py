@@ -13,9 +13,4 @@ while True:
         ac = 0
     else:
         print("END PROGRAM")
-        break
-
-
-     
-
-    
+        break 
