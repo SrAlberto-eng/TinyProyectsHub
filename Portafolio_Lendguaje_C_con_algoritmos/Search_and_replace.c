@@ -15,12 +15,14 @@ int main(void)
     char *ptr_frase;
     char palabra[ARR_LEN];
     char *ptr_palabra;
-    int selector,frase_len,palabra_len, posicion;
-    int ptr_posicion;
+    int selector,frase_len,palabra_len,flag;
+    int posicion;
+    int *ptr_posicion;
 
     ptr_posicion = &posicion;
     ptr_frase = &frase[0];
     ptr_palabra = &palabra[0];
+    flag = TRUE;
 
     do
     {
@@ -30,12 +32,13 @@ int main(void)
         switch(selector)
         {
             case 1:
-
+            
             printf("\nCapturar frase: ");
-            ffush(stdin);
+            fflush(stdin);
             fgets(ptr_frase,ARR_LEN,stdin);
 
             frase_len = longitud(ptr_frase);
+            printf("%d", frase_len);
             break;
             
             case 2:
@@ -46,16 +49,19 @@ int main(void)
             fgets(ptr_palabra, ARR_LEN, stdin);
 
             palabra_len = longitud(ptr_palabra);
-
-            if(buscar_palabra(ptr_frase, ptr_palabra) == TRUE)return FALSE;
-            else printf("\nPalabra no encontrada.") return TRUE;
+            printf("%d", palabra_len);
+            if(buscar_palabra(ptr_frase, ptr_palabra, ptr_posicion) == TRUE)break;
+            else
+            { 
+            printf("\nPalabra no encontrada.");
+            }
             }while(TRUE);
-
             break;
+
             case 3:
 
-            ptintf("\nPrograma terminado\n");
-            return FALSE;
+            printf("\nPrograma terminado\n");
+            flag = FALSE;
             break;
 
             default:
@@ -64,7 +70,7 @@ int main(void)
             break;
 
         }
-    }while(TRUE);
+    }while(flag == TRUE);
 
 
     return 0;
@@ -99,6 +105,7 @@ int buscar_palabra(char *frase, char *palabra, int *posicion)
                 else break;
             }
         }
-        else if(*(frase + i) == '\0')return FALSE;
+        else if(*(frase + i) == '\0')break;
     }
+    return FALSE;
 }
