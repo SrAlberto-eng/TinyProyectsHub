@@ -107,5 +107,9 @@ int buscar_palabra(char *frase, char *palabra, int *posicion)
         }
         else if(*(frase + i) == '\0')break;
     }
+
+    
     return FALSE;
 }
+
+
